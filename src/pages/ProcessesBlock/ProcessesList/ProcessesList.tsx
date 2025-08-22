@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./ProcessList.css";
-import CreateFolderModal from "./CreateFolderModal";
+import "./ProcessesList.css";
+import CreateFolderModal from "../../../components/CreateFolderModal";
 
 interface ProcessCard {
   id: number;

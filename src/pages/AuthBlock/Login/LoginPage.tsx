@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-import { Input, Button, Card } from "../ui";
+import { Input, Button, Card } from "../../../components/ui";
 import axios from "axios";
 
 interface LoginPageProps {

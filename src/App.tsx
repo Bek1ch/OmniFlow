@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
-import { LoginPage } from "./components/Auth";
+import { LoginPage } from "./pages/AuthBlock/Login";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
