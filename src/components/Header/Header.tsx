@@ -1,94 +1,112 @@
-import React from "react";
-import { styled, Box, IconButton, Badge, Typography } from "@mui/material";
-import { Input, Button, Avatar } from "../ui";
-import SearchBar from "../Inputs/SearchBar";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  InputBase,
+  Avatar,
+  Menu,
+  MenuItem,
+  styled,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import { useState } from "react";
 
-interface HeaderProps {
-  onSidebarToggle: () => void;
-}
-
-const Root = styled("header")(({ theme }) => ({
-  height: 64,
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
-  alignItems: "center",
   justifyContent: "space-between",
-  padding: theme.spacing(0, 2),
-  backgroundColor: "#fff",
-  borderBottom: "1px solid #e5e7eb", // gray-200
-  boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-  zIndex: 10,
+  alignItems: "center",
+  gap: theme.spacing(2),
+  minHeight: "56px !important",
+  height: 56,
 }));
 
-const Left = styled(Box)({
+const SearchBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: 12,
-});
+  gap: theme.spacing(1),
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(1, 2),
+  flex: 1,
+  maxWidth: 500,
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: 400,
+  },
+  [theme.breakpoints.down("xs")]: {
+    maxWidth: "100%",
+  },
+}));
 
-const Right = styled(Box)({
+const SearchInput = styled(InputBase)(({ theme }) => ({
+  flex: 1,
+  fontSize: theme.typography.body1.fontSize,
+}));
+
+const ActionsBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: 16,
-});
+  gap: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    gap: theme.spacing(1),
+  },
+}));
 
-const SearchWrapper = styled("div")({
-  width: 250,
-});
+const Header = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-const LanguageBtn = styled(Button)({
-  display: "flex",
-  alignItems: "center",
-  gap: 4,
-});
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-const Profile = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: 8,
-  cursor: "pointer",
-});
-
-const Header: React.FC<HeaderProps> = ({ onSidebarToggle }) => {
   return (
-    <Root>
-      {/* Левая часть */}
-      <Left>
-        <SearchBar />
-        {/* <SearchWrapper>
-          <Input
-            placeholder="Поиск..."
-            leftIcon="🔍"
-            variant="filled"
-            size="sm"
-            fullWidth
-          />
-        </SearchWrapper> */}
-      </Left>
+    <AppBar
+      position="static"
+      color="transparent"
+      elevation={0}
+      sx={{ mt: 7.5 }}
+    >
+      <StyledToolbar>
+        <SearchBox>
+          <SearchIcon sx={{ color: "rgba(73,73,73,0.5)" }} />
+          <SearchInput placeholder="Поиск" />
+        </SearchBox>
 
-      {/* Правая часть */}
-      <Right>
-        <Button variant="ghost" size="sm" aria-label="Создать">
-          ✏️
-        </Button>
+        <ActionsBox>
+          <IconButton>
+            <EditOutlinedIcon />
+          </IconButton>
 
-        <IconButton aria-label="Уведомления">
-          <Badge badgeContent={3} color="error">
-            🔔
-          </Badge>
-        </IconButton>
+          <IconButton>
+            <NotificationsOutlinedIcon />
+          </IconButton>
 
-        <LanguageBtn variant="ghost" size="sm">
-          <span>🇰🇿</span>
-          <Typography variant="body2">KZ</Typography>
-          <span>▼</span>
-        </LanguageBtn>
+          <IconButton>
+            <LanguageOutlinedIcon />
+          </IconButton>
 
-        <Profile>
-          <Avatar name="Пользователь" size="sm" online />
-          <Typography variant="body2">Профиль</Typography>
-        </Profile>
-      </Right>
-    </Root>
+          <IconButton onClick={handleMenuOpen}>
+            <Avatar sx={{ width: 32, height: 32 }}>D</Avatar>
+          </IconButton>
+
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}>Профиль</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Настройки</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Выйти</MenuItem>
+          </Menu>
+        </ActionsBox>
+      </StyledToolbar>
+    </AppBar>
   );
 };
 

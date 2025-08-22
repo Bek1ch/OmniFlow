@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material";
-import Header from "./Header";
+import Header from "./Header/Header";
 import DrawerCustom from "./DrawerCustom";
 
 interface LayoutProps {
@@ -29,8 +29,10 @@ const Main = styled("main", {
   display: "flex",
   flexDirection: "column",
   minWidth: 0,
+  gap: 24,
   marginLeft: sidebarOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
   transition: "margin-left 0.3s ease",
+  minHeight: "100vh",
 }));
 
 const HeaderWrapper = styled("header")({
@@ -39,7 +41,7 @@ const HeaderWrapper = styled("header")({
 });
 
 const Content = styled("div")({
-  flex: 1,
+  flex: 1, // занимает всё доступное пространство
   display: "flex",
   flexDirection: "column",
   padding: 16,
@@ -48,7 +50,8 @@ const Content = styled("div")({
   borderRadius: "12px 12px 0 0",
   backgroundColor: "#fff",
   boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-  overflow: "auto",
+  overflow: "auto", // прокрутка если не влезает
+  minHeight: 0, // 🔑 чтобы flex-элемент правильно ужимался
 });
 
 const Layout: React.FC<LayoutProps> = ({
@@ -69,7 +72,7 @@ const Layout: React.FC<LayoutProps> = ({
 
       <Main sidebarOpen={sidebarOpen}>
         <HeaderWrapper>
-          <Header onSidebarToggle={onSidebarToggle} />
+          <Header />
         </HeaderWrapper>
         <Content>{children}</Content>
       </Main>

@@ -56,29 +56,8 @@ const theme = createTheme({
     },
   },
 
-  typography: {
-    fontFamily: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
-    fontSize: 16,
-    htmlFontSize: 16,
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightMedium: 500,
-    fontWeightBold: 700,
-    h1: { fontSize: "2.25rem" }, // 36px
-    h2: { fontSize: "1.875rem" }, // 30px
-    h3: { fontSize: "1.5rem" }, // 24px
-    h4: { fontSize: "1.25rem" }, // 20px
-    h5: { fontSize: "1.125rem" }, // 18px
-    h6: { fontSize: "1rem" }, // 16px
-    body1: { fontSize: "1rem", lineHeight: 1.5 },
-    body2: { fontSize: "0.875rem", lineHeight: 1.5 },
-    caption: { fontSize: "0.75rem" },
-  },
-
-  spacing: 8, // 1 unit = 4px (your spacing system is in 4px multiples)
-
   shape: {
-    borderRadius: 6, // --radius-base
+    borderRadius: 6,
   },
 
   shadows: [
@@ -143,6 +122,16 @@ const theme = createTheme({
       md: 768,
       lg: 992,
       xl: 1200,
+    },
+  },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:focus": { outline: "none" },
+          "&:focus-visible": { outline: "none" },
+        },
+      },
     },
   },
 });
