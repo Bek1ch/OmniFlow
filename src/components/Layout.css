@@ -1,4 +1,3 @@
-/* Layout Component Styles */
 .layout {
   display: flex;
   flex-direction: row;
@@ -8,10 +7,9 @@
 }
 
 .layout__main {
-  flex: 1;
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  flex-direction: column; /* Header сверху, контент тянется */
+  flex: 1;
   width: 100%;
   min-width: 0;
   margin-left: var(--sidebar-width-collapsed);
@@ -22,30 +20,36 @@
   margin-left: var(--sidebar-width);
 }
 
+.layout__header {
+  height: var(--header-height);
+  flex-shrink: 0; /* фиксированная высота */
+}
+
 .layout__content {
-  flex: 1;
-  padding: 0;
+  flex: 1; /* тянется на всё оставшееся пространство */
+  display: flex; /* <- чтобы вложенный контент тоже можно было растягивать */
+  flex-direction: column;
+  padding: var(--space-4);
   background-color: var(--color-white);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   margin: var(--space-4);
-  margin-top: var(--header-height);
+  margin-top: 0; /* убрал margin-top, т.к. header занимает место */
   box-shadow: var(--shadow-sm);
-  overflow: hidden;
+  overflow: auto; /* скролл если контент длинный */
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 1024px) {
   .layout__main {
-    margin-left: 0; /* На мобильных убираем sidebar отступ */
+    margin-left: 0;
   }
 
   .layout__main--sidebar-open {
-    margin-left: 0; /* На мобильных не сдвигаем контент */
+    margin-left: 0;
   }
 
   .layout__content {
     margin: var(--space-2);
-    margin-top: calc(var(--header-height) + var(--space-2));
     border-radius: var(--radius-md) var(--radius-md) 0 0;
   }
 }
@@ -53,7 +57,6 @@
 @media (max-width: 768px) {
   .layout__content {
     margin: 0;
-    margin-top: var(--header-height);
     border-radius: 0;
   }
 }

@@ -1,8 +1,8 @@
-import { createBrowserRouter } from "react-router";
-import MessengerList from "../pages/MessangerBlock/Messenger/MessengerList";
-import ProcessList from "../pages/ProcessesBlock/ProcessesList/ProcessesList";
-import TaskList from "../pages/TaskBlock/TaskList/TaskList";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import TaskList from "../pages/TaskBlock/TaskList/TaskList";
+import ProcessList from "../pages/ProcessesBlock/ProcessesList/ProcessesList";
+import MessengerList from "../pages/MessangerBlock/Messenger/MessengerList";
 
 const router = createBrowserRouter([
   {
@@ -10,15 +10,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <TaskList />,
       },
       {
-        path: "/processes",
+        path: "processes",
         element: <ProcessList />,
       },
       {
-        path: "/messages",
+        path: "messages",
         element: <MessengerList />,
       },
     ],
