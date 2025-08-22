@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material";
 import Header from "./Header";
-import DrawerCustom from "./Sidebar/DrawerCustom";
+import DrawerCustom from "./DrawerCustom";
 
 interface LayoutProps {
   children: React.ReactNode;

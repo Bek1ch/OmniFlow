@@ -1,19 +1,19 @@
 import {
-  Divider,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   styled,
   useTheme,
 } from "@mui/material";
 import { type FC } from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import ChecklistOutlinedIcon from "@mui/icons-material/ChecklistOutlined";
+import MemoryOutlinedIcon from "@mui/icons-material/MemoryOutlined";
+import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -22,19 +22,26 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-const ListItemCustom = styled(ListItemText)(({ theme }) => ({
+const ListItemCustom = styled("div")(({ theme }) => ({
   padding: theme.spacing(1, 2),
   textAlign: "right",
+  flexGrow: 1,
   "&.isActive": {
     borderRight: `3px solid ${theme.palette.secondary.main}`,
     fontWeight: 600,
   },
 }));
 
+const iconMap = {
+  tasks: ChecklistOutlinedIcon,
+  processes: MemoryOutlinedIcon,
+  messages: ChatOutlinedIcon,
+};
+
 interface MenuItem {
   id: number;
   label: string;
-  icon: string;
+  icon: keyof typeof iconMap;
   href: string;
   isActive: boolean;
   view: string;
@@ -60,7 +67,7 @@ const DrawerCustom: FC<DrawerProps> = ({
     {
       id: 1,
       label: "Задачи",
-      icon: "📋",
+      icon: "tasks",
       href: "/tasks",
       isActive: currentView === "tasks" || currentView === "",
       view: "tasks",
@@ -69,7 +76,7 @@ const DrawerCustom: FC<DrawerProps> = ({
     {
       id: 2,
       label: "Процессы",
-      icon: "⚙️",
+      icon: "processes",
       href: "/processes",
       isActive: currentView === "processes",
       view: "processes",
@@ -77,7 +84,7 @@ const DrawerCustom: FC<DrawerProps> = ({
     {
       id: 3,
       label: "Мессенджеры",
-      icon: "💬",
+      icon: "messages",
       href: "/messages",
       isActive: currentView === "messages",
       view: "messages",
@@ -104,43 +111,53 @@ const DrawerCustom: FC<DrawerProps> = ({
       </DrawerHeader>
 
       <List>
-        {menuItems.map((item) => (
-          <ListItem
-            key={item.id}
-            disablePadding
-            onClick={() => onMenuClick(item.view)}
-          >
-            <ListItemButton
-              sx={{
-                px: isOpen ? 2 : 0,
-                justifyContent: isOpen ? "flex-start" : "center",
-              }}
+        {menuItems.map((item) => {
+          const IconComponent = iconMap[item.icon];
+          return (
+            <ListItem
+              key={item.id}
+              disablePadding
+              onClick={() => onMenuClick(item.view)}
             >
-              {!isOpen && (
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    justifyContent: "center",
-                    display: "flex",
-                  }}
-                >
-                  {item.icon}
-                </ListItemIcon>
-              )}
+              <ListItemButton
+                sx={{
+                  px: isOpen ? 2 : 0,
+                  justifyContent: isOpen ? "flex-start" : "center",
+                }}
+              >
+                {!isOpen && (
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      justifyContent: "center",
+                      display: "flex",
+                    }}
+                  >
+                    <IconComponent
+                      sx={{
+                        fontSize: 40,
+                        padding: 1,
+                        borderRadius: "50%",
+                        border: item.isActive
+                          ? `2px solid ${theme.palette.secondary.main}`
+                          : "2px solid transparent",
+                        color: item.isActive
+                          ? theme.palette.secondary.main
+                          : theme.palette.text.primary,
+                      }}
+                    />
+                  </ListItemIcon>
+                )}
 
-              {isOpen && (
-                <ListItemCustom
-                  className={item.isActive ? "isActive" : ""}
-                  primary={item.label}
-                  sx={{
-                    flexGrow: 1,
-                    pr: 2,
-                  }}
-                />
-              )}
-            </ListItemButton>
-          </ListItem>
-        ))}
+                {isOpen && (
+                  <ListItemCustom className={item.isActive ? "isActive" : ""}>
+                    {item.label}
+                  </ListItemCustom>
+                )}
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
     </Drawer>
   );
