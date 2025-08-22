@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
-import TaskList from "./components/TaskList";
-import ProcessList from "./components/ProcessList";
-import MessengerList from "./components/MessengerList";
 import { LoginPage } from "./components/Auth";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Состояние авторизации
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Состояние авторизации, временно true
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,12 +47,7 @@ function App() {
       sidebarOpen={sidebarOpen}
       onSidebarToggle={handleSidebarToggle}
     >
-      <Routes>
-        <Route path="/" element={<TaskList />} />
-        <Route path="/tasks" element={<TaskList />} />
-        <Route path="/processes" element={<ProcessList />} />
-        <Route path="/messages" element={<MessengerList />} />
-      </Routes>
+      <Outlet />
     </Layout>
   );
 }
