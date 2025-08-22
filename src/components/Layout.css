@@ -1,0 +1,57 @@
+/* Layout Component Styles */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+  position: relative;
+}
+
+.layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  margin-left: var(--sidebar-width-collapsed);
+  transition: margin-left var(--transition-base);
+}
+
+.layout__main--sidebar-open {
+  margin-left: var(--sidebar-width);
+}
+
+.layout__content {
+  flex: 1;
+  padding: 0;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin: var(--space-4);
+  margin-top: var(--header-height);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .layout__main {
+    margin-left: 0; /* На мобильных убираем sidebar отступ */
+  }
+
+  .layout__main--sidebar-open {
+    margin-left: 0; /* На мобильных не сдвигаем контент */
+  }
+
+  .layout__content {
+    margin: var(--space-2);
+    margin-top: calc(var(--header-height) + var(--space-2));
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout__content {
+    margin: 0;
+    margin-top: var(--header-height);
+    border-radius: 0;
+  }
+}
