@@ -3,10 +3,19 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import { LoginPage } from "./pages/AuthBlock/Login";
-import { authDisabled } from "./config";
+import { authDisabled, getSidebarOpen, setSidebarOpenStorage } from "./config";
+import Header from "./components/Header";
+import { Stack, styled } from "@mui/material";
+
+export const Container = styled(Stack)({
+  margin: 0,
+  flexGrow: 1,
+  flexShrink: 1,
+  height: "100vh",
+});
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(getSidebarOpen());
   const [isAuthenticated, setIsAuthenticated] = useState(authDisabled); // Состояние авторизации, временно true
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,7 +48,24 @@ function App() {
 
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
+    setSidebarOpenStorage(!sidebarOpen);
   };
+
+  return (
+    <Container>
+      <Layout
+        currentView={getCurrentView()}
+        onMenuClick={handleMenuClick}
+        sidebarOpen={sidebarOpen}
+        onSidebarToggle={handleSidebarToggle}
+      >
+        <Header onSidebarToggle={handleSidebarToggle} />
+        <Outlet />
+      </Layout>
+      <Header onSidebarToggle={handleSidebarToggle} />
+      <Outlet />
+    </Container>
+  );
 
   return (
     <Layout
@@ -48,6 +74,7 @@ function App() {
       sidebarOpen={sidebarOpen}
       onSidebarToggle={handleSidebarToggle}
     >
+      <Header onSidebarToggle={handleSidebarToggle} />
       <Outlet />
     </Layout>
   );

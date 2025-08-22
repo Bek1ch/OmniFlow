@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sidebar.css";
-import { Button } from "./ui";
-import { cn } from "../utils";
+import { Button } from "../ui";
+import { cn } from "../../utils";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <div className="sidebar__divider" />
 
           <div className="sidebar__section">
-            <div className="sidebar__section-title">Недавние</div>
+            {/* <div className="sidebar__section-title">Недавние</div> */}
             <ul className="sidebar__submenu">
               <li>
                 <button

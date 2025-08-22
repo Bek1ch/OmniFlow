@@ -1,6 +1,7 @@
 /* Layout Component Styles */
 .layout {
   display: flex;
+  flex-direction: row;
   min-height: 100vh;
   background-color: var(--color-gray-50);
   position: relative;
@@ -9,6 +10,7 @@
 .layout__main {
   flex: 1;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   width: 100%;
   min-width: 0;

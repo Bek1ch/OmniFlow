@@ -1,8 +1,10 @@
 import React from "react";
-import "./Layout.css";
+// import "./Layout.css";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar/Sidebar";
 import { cn } from "../utils";
+import DrawerCustom from "./Sidebar/DrawerCustom";
+import { Box, Stack, Typography } from "@mui/material";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,24 +22,17 @@ const Layout: React.FC<LayoutProps> = ({
   onSidebarToggle,
 }) => {
   return (
-    <div className="layout">
-      <Sidebar
+    <Box flexGrow={1}>
+      <DrawerCustom
         isOpen={sidebarOpen}
         onMenuClick={onMenuClick}
+        onClose={onSidebarToggle}
         currentView={currentView}
       />
-
-      <div
-        className={cn(
-          "layout__main",
-          sidebarOpen && "layout__main--sidebar-open",
-        )}
-      >
-        <Header onSidebarToggle={onSidebarToggle} />
-
-        <main className="layout__content">{children}</main>
-      </div>
-    </div>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {children}
+      </Box>
+    </Box>
   );
 };
 

@@ -8,7 +8,7 @@ const theme = createTheme({
       dark: "#0056b3",
     },
     secondary: {
-      main: "#6c757d",
+      main: "#A680FF",
       light: "#f8f9fa",
       dark: "#545b62",
     },
@@ -75,7 +75,7 @@ const theme = createTheme({
     caption: { fontSize: "0.75rem" },
   },
 
-  spacing: 4, // 1 unit = 4px (your spacing system is in 4px multiples)
+  spacing: 8, // 1 unit = 4px (your spacing system is in 4px multiples)
 
   shape: {
     borderRadius: 6, // --radius-base
