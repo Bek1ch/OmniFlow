@@ -1,1 +1,1 @@
-export const authDisabled = false;
+export const authDisabled = true;
