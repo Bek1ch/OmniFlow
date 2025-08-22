@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import { Input, Button, Card } from "../../../components/ui";
 import axios from "axios";
+import { QRCodeSVG } from "qrcode.react";
 
 interface LoginPageProps {
   onLogin: () => void;
@@ -150,8 +151,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
 
               <div className="qr-code">
                 <div className="qr-placeholder">
+                  <QRCodeSVG value="https://reactjs.org/" />
                   {/* QR код будет здесь */}
-                  <svg
+                  {/* <svg
                     width="120"
                     height="120"
                     viewBox="0 0 120 120"
@@ -201,7 +203,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                     <rect x="60" y="90" width="10" height="10" fill="#ffffff" />
                     <rect x="80" y="90" width="10" height="10" fill="#ffffff" />
                     <rect x="90" y="90" width="20" height="20" fill="#ffffff" />
-                  </svg>
+                  </svg> */}
                 </div>
               </div>
 

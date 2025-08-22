@@ -231,7 +231,6 @@
 .qr-placeholder {
   width: 120px;
   height: 120px;
-  border: 2px solid var(--color-gray-200);
   border-radius: var(--radius-base);
   display: flex;
   align-items: center;
