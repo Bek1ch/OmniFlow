@@ -3,10 +3,11 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import { LoginPage } from "./pages/AuthBlock/Login";
+import { authDisabled } from "./config";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Состояние авторизации, временно true
+  const [isAuthenticated, setIsAuthenticated] = useState(authDisabled); // Состояние авторизации, временно true
   const navigate = useNavigate();
   const location = useLocation();
 
