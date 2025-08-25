@@ -70,7 +70,7 @@ const Header = () => {
       position="static"
       color="transparent"
       elevation={0}
-      sx={{ mt: 7.5 }}
+      // sx={{ mt: 7.5 }}
     >
       <StyledToolbar>
         <SearchBox>

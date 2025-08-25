@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import Header from "./Header/Header";
 import DrawerCustom from "./DrawerCustom";
 
@@ -41,7 +41,7 @@ const HeaderWrapper = styled("header")({
 });
 
 const Content = styled("div")({
-  flex: 1, // занимает всё доступное пространство
+  flex: 1,
   display: "flex",
   flexDirection: "column",
   padding: 16,
@@ -50,8 +50,8 @@ const Content = styled("div")({
   borderRadius: "12px 12px 0 0",
   backgroundColor: "#fff",
   boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-  overflow: "auto", // прокрутка если не влезает
-  minHeight: 0, // 🔑 чтобы flex-элемент правильно ужимался
+  // overflow: "auto",
+  minHeight: 0,
 });
 
 const Layout: React.FC<LayoutProps> = ({
@@ -69,13 +69,15 @@ const Layout: React.FC<LayoutProps> = ({
         onClose={onSidebarToggle}
         currentView={currentView}
       />
-
       <Main sidebarOpen={sidebarOpen}>
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
         <Content>{children}</Content>
       </Main>
+      {/* <Stack>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, libero officiis! Dolorem ad voluptates esse incidunt in totam ratione perspiciatis distinctio maiores. Dolorum mollitia odit tempore perspiciatis. Dolorum, magnam dolores!
+      </Stack> */}
     </Root>
   );
 };
