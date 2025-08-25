@@ -1,6 +1,7 @@
 export const authDisabled = true;
 
-export const SIDEBAR_WIDTH = 300;
+// Sidebar widths in pixels (better don't change these values)
+export const SIDEBAR_WIDTH = 324;
 export const SIDEBAR_WIDTH_COLLAPSED = 164;
 
 export const getSidebarOpen = () => {
