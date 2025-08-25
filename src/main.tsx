@@ -5,11 +5,13 @@ import { RouterProvider } from "react-router-dom";
 
 import router from "./router/index.tsx";
 import theme from "./theme.ts";
+import GlobalStylesMUI from "./GlobalStylesMUI.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <GlobalStylesMUI />
       <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>,

@@ -6,7 +6,6 @@ import {
   InputAdornment,
   Button,
   Grid,
-  Card,
   CardContent,
   Pagination,
   Select,
@@ -19,6 +18,7 @@ import CreateFolderModal from "../../../components/CreateFolderModal";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import useTablePagination from "../../../hooks/useTablePagination";
 import TablePaginationCustom from "../../../components/TableCustom/TablePaginationCustom";
+import Card from "../../../components/Card";
 
 interface ProcessCard {
   id: number;
@@ -33,6 +33,7 @@ const ProcessBlock = styled(Stack)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   flexDirection: "column",
   gap: theme.spacing(3),
+  overflow: "hidden",
   backgroundColor: theme.palette.common.white,
 }));
 
@@ -54,13 +55,26 @@ const ProcessList: React.FC = () => {
     { id: 7, title: "ЮРО - АРХИВ", icon: "📋", type: "process" },
     { id: 8, title: "Сметный отдел", icon: "💰", type: "department" },
     { id: 9, title: "Справочник", icon: "📖", type: "department" },
-    { id: 10, title: "Создать", icon: "+", type: "action" },
+    { id: 10, title: "Создать", icon: "➕", type: "action" },
+    { id: 11, title: "IT-отдел", icon: "💻", type: "department" },
+    { id: 12, title: "Маркетинг", icon: "📢", type: "department" },
+    { id: 13, title: "Продажи", icon: "💼", type: "department" },
+    { id: 14, title: "Склад", icon: "📦", type: "department" },
+    { id: 15, title: "Производство", icon: "🏭", type: "department" },
+    { id: 16, title: "CRM", icon: "🗂️", type: "process" },
+    { id: 17, title: "Заявки", icon: "📝", type: "process" },
+    { id: 18, title: "Поддержка", icon: "☎️", type: "department" },
+    { id: 19, title: "Обучение", icon: "🎓", type: "process" },
+    { id: 20, title: "Аналитика", icon: "📈", type: "process" },
+    { id: 21, title: "Настройки", icon: "⚙️", type: "action" },
+    { id: 22, title: "Импорт", icon: "⬇️", type: "action" },
+    { id: 23, title: "Экспорт", icon: "⬆️", type: "action" },
   ]);
 
   const { pageNo, pageSize, handleChangePage, handleChangeRowsPerPage } =
     useTablePagination(1, 25);
 
-  const handleCreateClick = () => setIsCreateModalOpen(true);
+  // const handleCreateClick = () => setIsCreateModalOpen(true);
   const handleCloseModal = () => setIsCreateModalOpen(false);
 
   const handleSaveFolder = (folderData: {
@@ -89,14 +103,16 @@ const ProcessList: React.FC = () => {
         direction="row"
         gap={(theme) => theme.spacing(1.5)}
       >
-        <SubTitle>Процессы</SubTitle>
-        <BookmarkIcon />
+        Search Field
       </Stack>
-      <Stack flex={1}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit
-        suscipit. Consequuntur explicabo eaque, iusto voluptate possimus velit
-        ratione consectetur totam deserunt. Laudantium culpa eius illo quis sit,
-        illum voluptatem.
+      <Stack flex={1} overflow="auto">
+        <Grid container spacing={2}>
+          {processCards.map((card) => (
+            <Grid key={card.id}>
+              <Card title={card.title} />
+            </Grid>
+          ))}
+        </Grid>
       </Stack>
       <TablePaginationCustom
         pageNo={pageNo}
@@ -138,21 +154,12 @@ const ProcessList: React.FC = () => {
       <Grid container spacing={2}>
         {processCards.map((card) => (
           <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }} key={card.id}>
-            <Card
-              onClick={card.type === "action" ? handleCreateClick : undefined}
-              sx={{
-                textAlign: "center",
-                cursor: card.type === "action" ? "pointer" : "default",
-                "&:hover": {
-                  boxShadow: card.type === "action" ? 6 : "inherit",
-                },
-              }}
-            >
+            <Stack>
               <CardContent>
                 <Typography fontSize={32}>{card.icon}</Typography>
                 <Typography variant="body1">{card.title}</Typography>
               </CardContent>
-            </Card>
+            </Stack>
           </Grid>
         ))}
       </Grid>
