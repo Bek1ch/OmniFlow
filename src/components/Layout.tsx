@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, styled } from "@mui/material";
-import Header from "./Header/Header";
+import Header from "./Header";
 import DrawerCustom from "./DrawerCustom";
 import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_COLLAPSED } from "../config";
 
