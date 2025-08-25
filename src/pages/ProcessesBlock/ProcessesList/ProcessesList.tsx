@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type FC } from "react";
 import { Stack, Typography, Grid, styled } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 
@@ -7,6 +7,7 @@ import TablePaginationCustom from "../../../components/TableCustom/TablePaginati
 import Card from "../../../components/Card";
 import SearchBarMini from "../../../components/Inputs/SearchBarMini";
 import ButtonCustom from "../../../components/Inputs/Button";
+import AddIcon from "@mui/icons-material/Add";
 
 interface ProcessCard {
   id: number;
@@ -31,7 +32,7 @@ const SubTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-const ProcessList: React.FC = () => {
+const ProcessList: FC = () => {
   const [processCards] = useState<ProcessCard[]>([
     { id: 1, title: "HR", icon: "Work", type: "department" },
     { id: 2, title: "Документы", icon: "Description", type: "department" },
@@ -42,7 +43,6 @@ const ProcessList: React.FC = () => {
     { id: 7, title: "ЮРО - АРХИВ", icon: "Archive", type: "process" },
     { id: 8, title: "Сметный отдел", icon: "AttachMoney", type: "department" },
     { id: 9, title: "Справочник", icon: "MenuBook", type: "department" },
-    { id: 10, title: "Создать", icon: "AddCircleOutline", type: "action" },
   ]);
 
   const { pageNo, pageSize, handleChangePage, handleChangeRowsPerPage } =
@@ -82,6 +82,16 @@ const ProcessList: React.FC = () => {
               </Grid>
             );
           })}
+          <Grid size={{ xs: 12, md: 6, lg: 4, xl: 3, xxl: 2 }}>
+            <Card
+              Icon={AddIcon}
+              sx={(theme) => ({
+                backgroundColor: theme.palette.common.white,
+                border: `2px solid ${theme.palette.divider}`,
+              })}
+              title={"Создать папку"}
+            />
+          </Grid>
         </Grid>
       </Stack>
       <TablePaginationCustom

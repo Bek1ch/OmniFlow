@@ -1,10 +1,17 @@
 import { type FC } from "react";
-import { Box, styled, Typography } from "@mui/material";
+import {
+  Box,
+  styled,
+  Typography,
+  type SxProps,
+  type Theme,
+} from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder"; // пример иконки
 
 interface CardProps {
   title: string;
   Icon?: React.ElementType;
+  sx?: SxProps<Theme>;
 }
 
 const CardContainer = styled(Box)(({ theme }) => ({
@@ -18,16 +25,16 @@ const CardContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
-  transition: "all 0.1s ease", // ⬅️ плавный переход
+  transition: "all 0.1s ease",
   "&:hover": {
     boxShadow: theme.shadows[3],
     cursor: "pointer",
   },
 }));
 
-const Card: FC<CardProps> = ({ title, Icon = StarBorderIcon }) => {
+const Card: FC<CardProps> = ({ title, sx, Icon = StarBorderIcon }) => {
   return (
-    <CardContainer>
+    <CardContainer sx={sx}>
       <Icon fontSize="large" />
       <Typography variant="body1" fontWeight={500}>
         {title}
