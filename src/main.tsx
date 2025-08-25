@@ -4,8 +4,8 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { RouterProvider } from "react-router-dom";
 
 import router from "./router/index.tsx";
-import theme from "./theme.ts";
-import GlobalStylesMUI from "./GlobalStylesMUI.tsx";
+import theme from "./theme/theme.ts";
+import GlobalStylesMUI from "./theme/GlobalStylesMUI.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

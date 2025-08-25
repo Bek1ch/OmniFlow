@@ -105,10 +105,18 @@ const ProcessList: React.FC = () => {
       >
         Search Field
       </Stack>
-      <Stack flex={1} overflow="auto">
+      <Stack
+        flex={1}
+        overflow="auto"
+        sx={(theme) => ({
+          flex: 1,
+          overflow: "auto",
+          paddingRight: theme.spacing(2),
+        })}
+      >
         <Grid container spacing={2}>
           {processCards.map((card) => (
-            <Grid key={card.id}>
+            <Grid size={{ xs: 12, md: 6, lg: 4, xl: 3, xxl: 2 }} key={card.id}>
               <Card title={card.title} />
             </Grid>
           ))}

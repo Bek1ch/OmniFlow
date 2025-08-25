@@ -123,6 +123,7 @@ const theme = createTheme({
       md: 768,
       lg: 992,
       xl: 1200,
+      xxl: 1690,
     },
   },
   components: {
