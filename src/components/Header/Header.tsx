@@ -15,14 +15,9 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import { useState } from "react";
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  display: "flex",
+const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between",
-  alignItems: "center",
-  gap: theme.spacing(2),
-  minHeight: "56px !important",
-  height: 56,
-}));
+});
 
 const SearchBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -66,13 +61,8 @@ const Header = () => {
   };
 
   return (
-    <AppBar
-      position="static"
-      color="transparent"
-      elevation={0}
-      // sx={{ mt: 7.5 }}
-    >
-      <StyledToolbar>
+    <AppBar position="static" color="transparent" elevation={0}>
+      <StyledToolbar disableGutters>
         <SearchBox>
           <SearchIcon sx={{ color: "rgba(73,73,73,0.5)" }} />
           <SearchInput placeholder="Поиск" />
