@@ -15,24 +15,33 @@ interface LayoutProps {
 const Root = styled("div")({
   display: "flex",
   flexDirection: "row",
-  minHeight: "100vh",
-  backgroundColor: "#f9fafb", // бывший var(--color-gray-50)
+  height: "100vh",
+  overflow: "hidden",
+  backgroundColor: "#f9fafb",
 });
 
 const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "sidebarOpen",
 })<{ sidebarOpen: boolean }>(({ sidebarOpen, theme }) => ({
-  margin: theme.spacing(7.5, 3, 3, 10.5),
   flex: 1,
   display: "flex",
   flexDirection: "column",
   minWidth: 0,
-  gap: 24,
+  height: "100vh",
+  padding: theme.spacing(7.5, 3),
   marginLeft: sidebarOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
   transition: "margin-left 0.3s ease",
-  height: "100vh",
+  gap: theme.spacing(3),
   overflow: "hidden",
 }));
+
+const Content = styled(Stack)({
+  flex: 1,
+  overflowY: "auto",
+  display: "flex",
+  flexDirection: "column",
+  minHeight: 0,
+});
 
 const Layout: React.FC<LayoutProps> = ({
   children,
@@ -51,9 +60,7 @@ const Layout: React.FC<LayoutProps> = ({
       />
       <Main sidebarOpen={sidebarOpen}>
         <Header />
-        <Stack flexGrow={1} overflow={"auto"}>
-          {children}
-        </Stack>
+        <Content>{children}</Content>
       </Main>
     </Root>
   );
