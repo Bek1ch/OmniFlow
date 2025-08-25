@@ -1,6 +1,22 @@
 import React, { useState } from "react";
-import "./ProcessesList.css";
+import {
+  Stack,
+  Typography,
+  TextField,
+  InputAdornment,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  Pagination,
+  Select,
+  MenuItem,
+  styled,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
 import CreateFolderModal from "../../../components/CreateFolderModal";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 interface ProcessCard {
   id: number;
@@ -8,6 +24,22 @@ interface ProcessCard {
   icon: string;
   type: "department" | "process" | "action";
 }
+
+const ProcessBlock = styled(Stack)(({ theme }) => ({
+  flex: 1,
+  padding: theme.spacing(2),
+  borderRadius: theme.shape.borderRadius,
+  flexDirection: "column",
+  gap: theme.spacing(3),
+  backgroundColor: theme.palette.common.white,
+  border: `1px solid ${theme.palette.primary.main}`,
+}));
+
+const SubTitle = styled(Typography)(({ theme }) => ({
+  fontSize: "1.5rem",
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+}));
 
 const ProcessList: React.FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -24,13 +56,8 @@ const ProcessList: React.FC = () => {
     { id: 10, title: "Создать", icon: "+", type: "action" },
   ]);
 
-  const handleCreateClick = () => {
-    setIsCreateModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsCreateModalOpen(false);
-  };
+  const handleCreateClick = () => setIsCreateModalOpen(true);
+  const handleCloseModal = () => setIsCreateModalOpen(false);
 
   const handleSaveFolder = (folderData: {
     name: string;
@@ -41,66 +68,105 @@ const ProcessList: React.FC = () => {
     functionalAutoBlocking: boolean;
   }) => {
     console.log("Создание папки:", folderData);
-    // Здесь будет логика сохранения папки
   };
 
   return (
-    <div className="process-list">
-      <div className="process-list__content">
-        <div className="process-list__title-section">
-          <h1 className="process-list__title">Процессы</h1>
-        </div>
+    <ProcessBlock>
+      <Stack
+        alignItems="center"
+        direction="row"
+        gap={(theme) => theme.spacing(1.5)}
+      >
+        <SubTitle>Процессы</SubTitle>
+        <BookmarkIcon />
+      </Stack>
+      <Stack
+        alignItems="center"
+        direction="row"
+        gap={(theme) => theme.spacing(1.5)}
+      >
+        <SubTitle>Процессы</SubTitle>
+        <BookmarkIcon />
+      </Stack>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit
+      suscipit. Consequuntur explicabo eaque, iusto voluptate possimus velit
+      ratione consectetur totam deserunt. Laudantium culpa eius illo quis sit,
+      illum voluptatem.
+    </ProcessBlock>
+  );
 
-        <div className="process-list__toolbar">
-          <div className="process-list__search">
-            <div className="process-list__search-icon">🔍</div>
-            <input
-              type="text"
-              placeholder="Поиск по процессам"
-              className="process-list__search-input"
-            />
-          </div>
-          <div className="process-list__toolbar-actions">
-            <button className="process-list__add-button">
-              + Добавить новый процесс
-            </button>
-          </div>
-        </div>
+  return (
+    <Stack spacing={3} p={3}>
+      {/* Заголовок */}
+      <Typography variant="h4" fontWeight="bold">
+        Процессы
+      </Typography>
 
-        <div className="process-list__grid">
-          {processCards.map((card) => (
-            <div
-              key={card.id}
-              className={`process-card ${card.type === "action" ? "process-card--action" : ""}`}
+      {/* Поиск + кнопка */}
+      <Stack direction="row" spacing={2} alignItems="center">
+        <TextField
+          placeholder="Поиск по процессам"
+          size="small"
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="action" />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button variant="contained" startIcon={<AddIcon />}>
+          Добавить новый процесс
+        </Button>
+      </Stack>
+
+      {/* Сетка карточек */}
+      <Grid container spacing={2}>
+        {processCards.map((card) => (
+          <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }} key={card.id}>
+            <Card
               onClick={card.type === "action" ? handleCreateClick : undefined}
-              style={card.type === "action" ? { cursor: "pointer" } : {}}
+              sx={{
+                textAlign: "center",
+                cursor: card.type === "action" ? "pointer" : "default",
+                "&:hover": {
+                  boxShadow: card.type === "action" ? 6 : "inherit",
+                },
+              }}
             >
-              <div className="process-card__icon">{card.icon}</div>
-              <div className="process-card__title">{card.title}</div>
-            </div>
-          ))}
-        </div>
+              <CardContent>
+                <Typography fontSize={32}>{card.icon}</Typography>
+                <Typography variant="body1">{card.title}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
 
-        <div className="process-list__footer">
-          <div className="process-list__pagination">
-            <button className="process-list__pagination-btn">‹</button>
-            <span className="process-list__pagination-info">На странице</span>
-            <select className="process-list__pagination-select">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-            <button className="process-list__pagination-btn">›</button>
-          </div>
-        </div>
-      </div>
+      {/* Пагинация */}
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={2}
+        justifyContent="flex-end"
+      >
+        <Typography variant="body2">На странице:</Typography>
+        <Select size="small" defaultValue={1}>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+        </Select>
+        <Pagination count={10} shape="rounded" color="primary" />
+      </Stack>
 
+      {/* Модалка */}
       <CreateFolderModal
         isOpen={isCreateModalOpen}
         onClose={handleCloseModal}
         onSave={handleSaveFolder}
       />
-    </div>
+    </Stack>
   );
 };
 

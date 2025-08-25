@@ -32,6 +32,7 @@ const Main = styled("main", {
   marginLeft: sidebarOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
   transition: "margin-left 0.3s ease",
   gap: theme.spacing(3),
+  backgroundColor: theme.palette.background.default,
   overflow: "hidden",
 }));
 

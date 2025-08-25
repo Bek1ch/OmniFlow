@@ -23,17 +23,11 @@ const SearchBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: theme.spacing(1),
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.common.white,
   borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(1, 2),
+  padding: theme.spacing(2),
   flex: 1,
-  maxWidth: 500,
-  [theme.breakpoints.down("sm")]: {
-    maxWidth: 400,
-  },
-  [theme.breakpoints.down("xs")]: {
-    maxWidth: "100%",
-  },
+  maxWidth: 480,
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
@@ -44,10 +38,7 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 const ActionsBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: theme.spacing(2),
-  [theme.breakpoints.down("sm")]: {
-    gap: theme.spacing(1),
-  },
+  gap: theme.spacing(3),
 }));
 
 const Header = () => {
@@ -67,7 +58,6 @@ const Header = () => {
           <SearchIcon sx={{ color: "rgba(73,73,73,0.5)" }} />
           <SearchInput placeholder="Поиск" />
         </SearchBox>
-
         <ActionsBox>
           <IconButton>
             <EditOutlinedIcon />

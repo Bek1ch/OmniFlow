@@ -49,15 +49,16 @@ const theme = createTheme({
       900: "#212529",
     },
     background: {
-      default: "#ffffff",
+      default: "#F5F5F5",
+      paper: "#f8f9fa",
     },
     text: {
-      primary: "#212529",
+      primary: "#494949",
     },
   },
 
   shape: {
-    borderRadius: 6,
+    borderRadius: 16,
   },
 
   shadows: [
