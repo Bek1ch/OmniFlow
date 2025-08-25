@@ -17,6 +17,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import CreateFolderModal from "../../../components/CreateFolderModal";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import useTablePagination from "../../../hooks/useTablePagination";
+import TablePaginationCustom from "../../../components/TableCustom/TablePaginationCustom";
 
 interface ProcessCard {
   id: number;
@@ -32,7 +34,6 @@ const ProcessBlock = styled(Stack)(({ theme }) => ({
   flexDirection: "column",
   gap: theme.spacing(3),
   backgroundColor: theme.palette.common.white,
-  border: `1px solid ${theme.palette.primary.main}`,
 }));
 
 const SubTitle = styled(Typography)(({ theme }) => ({
@@ -55,6 +56,9 @@ const ProcessList: React.FC = () => {
     { id: 9, title: "Справочник", icon: "📖", type: "department" },
     { id: 10, title: "Создать", icon: "+", type: "action" },
   ]);
+
+  const { pageNo, pageSize, handleChangePage, handleChangeRowsPerPage } =
+    useTablePagination(1, 25);
 
   const handleCreateClick = () => setIsCreateModalOpen(true);
   const handleCloseModal = () => setIsCreateModalOpen(false);
@@ -88,10 +92,19 @@ const ProcessList: React.FC = () => {
         <SubTitle>Процессы</SubTitle>
         <BookmarkIcon />
       </Stack>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit
-      suscipit. Consequuntur explicabo eaque, iusto voluptate possimus velit
-      ratione consectetur totam deserunt. Laudantium culpa eius illo quis sit,
-      illum voluptatem.
+      <Stack flex={1}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit
+        suscipit. Consequuntur explicabo eaque, iusto voluptate possimus velit
+        ratione consectetur totam deserunt. Laudantium culpa eius illo quis sit,
+        illum voluptatem.
+      </Stack>
+      <TablePaginationCustom
+        pageNo={pageNo}
+        pageSize={pageSize}
+        currentPages={10} // Get this from API
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </ProcessBlock>
   );
 
