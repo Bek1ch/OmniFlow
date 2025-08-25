@@ -55,6 +55,10 @@ const theme = createTheme({
     text: {
       primary: "#494949",
     },
+    buttons: {
+      buttonGreenBack: "#B7E2C3",
+      buttonGreenText: "#0D9032",
+    },
   },
 
   shape: {

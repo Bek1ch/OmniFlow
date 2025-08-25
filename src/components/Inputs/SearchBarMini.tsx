@@ -1,4 +1,4 @@
-import { Box, InputBase, styled } from "@mui/material";
+import { Box, styled, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchContainer = styled(Box)(({ theme }) => ({
@@ -7,10 +7,9 @@ const SearchContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: theme.spacing(2),
   gap: theme.spacing(1.5),
-  margin: "0 auto",
   width: 461,
   height: 56,
-  backgroundColor: theme.palette.common.white,
+  backgroundColor: theme.palette.background.default,
   borderRadius: 16,
 }));
 
@@ -22,14 +21,14 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
   width: "100%",
 }));
 
-const SearchIconStyled = styled(SearchIcon)(() => ({
+const SearchIconStyled = styled(SearchIcon)(({ theme }) => ({
   width: 24,
   height: 24,
-  color: "rgba(73, 73, 73, 0.2)",
+  color: theme.palette.text.disabled,
   flex: "none",
 }));
 
-const SearchBar = () => {
+const SearchBarMini = () => {
   return (
     <SearchContainer>
       <SearchIconStyled />
@@ -38,4 +37,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default SearchBarMini;

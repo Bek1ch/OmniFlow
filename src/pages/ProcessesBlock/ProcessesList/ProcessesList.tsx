@@ -5,6 +5,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import useTablePagination from "../../../hooks/useTablePagination";
 import TablePaginationCustom from "../../../components/TableCustom/TablePaginationCustom";
 import Card from "../../../components/Card";
+import SearchBarMini from "../../../components/Inputs/SearchBarMini";
+import ButtonCustom from "../../../components/Inputs/Button";
 
 interface ProcessCard {
   id: number;
@@ -56,12 +58,9 @@ const ProcessList: React.FC = () => {
         <SubTitle>Процессы</SubTitle>
         <BookmarkIcon />
       </Stack>
-      <Stack
-        alignItems="center"
-        direction="row"
-        gap={(theme) => theme.spacing(1.5)}
-      >
-        Search Field
+      <Stack justifyContent={"space-between"} direction="row">
+        <SearchBarMini />
+        <ButtonCustom /> {/* TODO: Add Check Permissions */}
       </Stack>
       <Stack
         flex={1}
