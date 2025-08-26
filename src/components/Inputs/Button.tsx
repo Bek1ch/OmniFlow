@@ -12,7 +12,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 // TODO: Add Props
 const ButtonCustom = () => {
   return (
-    <StyledButton startIcon={<AddIcon />} variant="contained">
+    <StyledButton startIcon={<AddIcon />} disableElevation variant="contained">
       Добавить новый процесс
     </StyledButton>
   );
