@@ -49,15 +49,20 @@ const theme = createTheme({
       900: "#212529",
     },
     background: {
-      default: "#ffffff",
+      default: "#F5F5F5",
+      paper: "#f8f9fa",
     },
     text: {
-      primary: "#212529",
+      primary: "#494949",
+    },
+    buttons: {
+      buttonGreenBack: "#B7E2C3",
+      buttonGreenText: "#0D9032",
     },
   },
 
   shape: {
-    borderRadius: 6,
+    borderRadius: 16,
   },
 
   shadows: [
@@ -122,6 +127,7 @@ const theme = createTheme({
       md: 768,
       lg: 992,
       xl: 1200,
+      xxl: 1690,
     },
   },
   components: {

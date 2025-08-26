@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
-import Layout from "./components/Layout";
+
+import Layout from "./components/Page";
 import { LoginPage } from "./pages/AuthBlock/Login";
 import { authDisabled, getSidebarOpen, setSidebarOpenStorage } from "./config";
 

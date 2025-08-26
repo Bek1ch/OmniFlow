@@ -97,6 +97,7 @@ const DrawerCustom: FC<DrawerProps> = ({
       variant="permanent"
       sx={{
         "& .MuiDrawer-paper": {
+          backgroundColor: theme.palette.common.white,
           width: isOpen ? 300 : 140,
           transition: "width 0.3s ease",
           overflowX: "hidden",
